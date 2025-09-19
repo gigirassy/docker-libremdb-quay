@@ -8,6 +8,9 @@ RUN apk add --no-cache --virtual .build-deps git python3 build-base \
   && npm install -g pnpm
 
 # Clone repo and build
+ARG NEXT_PUBLIC_URL
+ENV NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL}
+
 RUN git clone --depth=1 https://github.com/zyachel/libremdb.git . \
   && pnpm install --frozen-lockfile \
   && pnpm build
